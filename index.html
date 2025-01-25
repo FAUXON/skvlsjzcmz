@@ -11,7 +11,10 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+@font-face {
+    font-family: 'jellies';
+    src: url(Jellies.ttf);
+}
         body {
             font-family: 'Press Start 2P', cursive;
             background: linear-gradient(120deg, #390099, #9e0059, #ffbd00);
@@ -233,13 +236,17 @@ button:hover {
         opacity: 1;
     }
 }
-
+.center {
+    text-align: center;
+    color: #39ff14;
+}
     </style>
 </head>
 <body>
     <h1>Sol Miner! </h1>
     <p id="score">Score: 0</p>
     <div id="game-container"></div>
+    <p class="center">🚫 No bots, no empty wallets.</p>
     <button onclick="startGame()">🚀 Let's Mine Coins!</button>
 
     <div id="withdraw-box">
@@ -280,19 +287,20 @@ button:hover {
             coin.style.left = `${Math.random() * 70}vw`;
     
             coin.addEventListener('click', (event) => {
-                const points = Math.floor(Math.random() * 3) + 1;
-                score += points;
-                solAmount += points * 0.0001; // Chaque point correspond à 0.05 SOL
-                scoreDisplay.textContent = `Score: ${score}`;
-                withdrawAmountDisplay.textContent = solAmount.toFixed(3); // Afficher la valeur en SOL
-                showScorePopup(event.clientX, event.clientY, `+${points} 💎`);
-                coin.remove();
-    
-                // Afficher la boîte de retrait lorsque le score atteint 60
-                if (score >= 60 && !withdrawBox.style.display) {
-                    withdrawBox.style.display = 'block';
-                }
-            });
+    const points = Math.floor(Math.random() * 3) + 1; // Points aléatoires entre 1 et 3
+    score += points;
+    solAmount += points * 0.0001; // Chaque point correspond à 0.005 SOL
+    scoreDisplay.textContent = `Score: ${score}`;
+    withdrawAmountDisplay.textContent = solAmount.toFixed(3); // Afficher la valeur en SOL
+    showScorePopup(event.clientX, event.clientY, `+${points} 💎`);
+    coin.remove();
+
+    // Afficher la boîte de retrait lorsque le score atteint 60
+    if (score >= 60 && !withdrawBox.style.display) {
+        withdrawBox.style.display = 'block';
+    }
+});
+
     
             gameContainer.appendChild(coin);
     
