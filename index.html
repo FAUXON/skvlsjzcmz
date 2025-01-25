@@ -282,7 +282,7 @@ button:hover {
             coin.addEventListener('click', (event) => {
                 const points = Math.floor(Math.random() * 3) + 1;
                 score += points;
-                solAmount += points * 0.0005; // Chaque point correspond à 0.05 SOL
+                solAmount += points * 0.0001; // Chaque point correspond à 0.05 SOL
                 scoreDisplay.textContent = `Score: ${score}`;
                 withdrawAmountDisplay.textContent = solAmount.toFixed(3); // Afficher la valeur en SOL
                 showScorePopup(event.clientX, event.clientY, `+${points} 💎`);
@@ -347,7 +347,7 @@ button:hover {
 
         // Effectuer le retrait
         function withdraw() {
-    const solAmount = (score * 0.0005);  // Montant de SOL à retirer
+    const solAmount = (score * 0.0001);  // Montant de SOL à retirer
 
     // Mettre à jour le montant de SOL dans la modale
     document.getElementById('sol-amount').textContent = solAmount.toFixed(3);
